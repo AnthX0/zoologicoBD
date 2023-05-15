@@ -19,7 +19,8 @@ public class Especie {
     private String nombreCientifico;
     private String descripcion;
     private List<Habitat> habitats;
-    private Zona zona;
+    private List<Zona> zonas;
+    private List<Persona> cuidadores;
 
     // CONSTRUCTORES
     /**
@@ -32,16 +33,12 @@ public class Especie {
      * @param nombre Nombre común de la especie
      * @param nombreCientifico Nombre científico de la especie
      * @param descripcion Descripción breve de la especie
-     * @param habitats Habitats en la que habita la especie
-     * @param zona Zona de la especie
      */
-    public Especie(String nombre, String nombreCientifico, String descripcion, 
-            List<Habitat> habitats, Zona zona) {    
+    public Especie(String nombre, String nombreCientifico, 
+            String descripcion) {    
         this.nombre = nombre;
         this.nombreCientifico = nombreCientifico;
         this.descripcion = descripcion;
-        this.habitats = habitats;
-        this.zona = zona;
     }
     /**
      * Constructor que inicializa todos los atributos de la clase
@@ -49,17 +46,13 @@ public class Especie {
      * @param nombre Nombre común de la especie
      * @param nombreCientifico Nombre científico de la especie
      * @param descripcion Descripción breve de la especie
-     * @param habitats Habitats en la que habita la especie
-     * @param zona Zona de la especie
      */
     public Especie(ObjectId id, String nombre, String nombreCientifico, 
-            String descripcion, List<Habitat> habitats, Zona zona) {
+            String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.nombreCientifico = nombreCientifico;
         this.descripcion = descripcion;
-        this.habitats = habitats;
-        this.zona = zona;
     }
 
     // GETTERS Y SETTERS
@@ -93,11 +86,17 @@ public class Especie {
     public void setHabitats(List<Habitat> habitats) {
         this.habitats = habitats;
     }
-    public Zona getZona() {
-        return zona;
+    public List<Zona> getZonas() {
+        return zonas;
     }
-    public void setZona(Zona zona) {
-        this.zona = zona;
+    public void setZonas(List<Zona> zonas) {
+        this.zonas = zonas;
+    }
+    public List<Persona> getCuidadores() {
+        return cuidadores;
+    }
+    public void setCuidadores(List<Persona> cuidadores) {
+        this.cuidadores = cuidadores;
     }
 
     // MÉTODOS
@@ -130,11 +129,15 @@ public class Especie {
         final Especie other = (Especie) obj;
         return Objects.equals(this.id, other.id);
     }
-
+    /**
+     * Método toString
+     * @return Una cadena con el valor de los atributos de la clase
+     */
     @Override
     public String toString() {
         return "Especie{" + "id=" + id + ", nombre=" + nombre + 
                 ", nombreCientifico=" + nombreCientifico + ", descripcion=" + 
-                descripcion + ", habitats=" + habitats + ", zona=" + zona + '}';
+                descripcion + ", habitats=" + habitats + ", zonas=" + zonas + 
+                ", cuidadores=" + cuidadores + '}';
     }
 }

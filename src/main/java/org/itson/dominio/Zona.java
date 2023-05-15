@@ -29,26 +29,21 @@ public class Zona {
      * Constructor que inicializa los atributos exceptuando id
      * @param nombre Nombre de la zona
      * @param extension Extensión
-     * @param especies Especies que habitan en la zona
      */
-    public Zona(String nombre, Float extension, List<Especie> especies) {
+    public Zona(String nombre, Float extension) {
         this.nombre = nombre;
         this.extension = extension;
-        this.especies = especies;
     }
     /**
      * Constructor que inicializa todos los atributos de la clase
      * @param id Id de la zona
      * @param nombre Nombre de la zona
      * @param extension Extensión
-     * @param especies Especies que habitan en la zona
      */
-    public Zona(ObjectId id, String nombre, Float extension, 
-            List<Especie> especies) {
+    public Zona(ObjectId id, String nombre, Float extension) {
         this.id = id;
         this.nombre = nombre;
         this.extension = extension;
-        this.especies = especies;
     }
 
     // GETTERS Y SETTERS

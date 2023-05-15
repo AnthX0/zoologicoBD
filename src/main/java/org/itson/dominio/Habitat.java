@@ -31,14 +31,11 @@ public class Habitat {
      * @param nombre Nombre del habitat
      * @param clima Clima del habitat
      * @param tipoVegetacion Tipo de vegetación del habitat
-     * @param continentes Lista de los continentes donde se encuentra el habitat
      */
-    public Habitat(String nombre, String clima, String tipoVegetacion, 
-            List<Continente> continentes) {
+    public Habitat(String nombre, String clima, String tipoVegetacion) {
         this.nombre = nombre;
         this.clima = clima;
         this.tipoVegetacion = tipoVegetacion;
-        this.continentes = continentes;
     }
     /**
      * Constructor que inicializa todos los atributos de la clase
@@ -46,15 +43,13 @@ public class Habitat {
      * @param nombre Nombre del habitat
      * @param clima Clima del habitat
      * @param tipoVegetacion Tipo de vegetación del habitat
-     * @param continentes Lista de los continentes donde se encuentra el habitat
      */
     public Habitat(ObjectId id, String nombre, String clima, 
-            String tipoVegetacion, List<Continente> continentes) {
+            String tipoVegetacion) {
         this.id = id;
         this.nombre = nombre;
         this.clima = clima;
         this.tipoVegetacion = tipoVegetacion;
-        this.continentes = continentes;
     }
 
     // GETTERS Y SETTERS

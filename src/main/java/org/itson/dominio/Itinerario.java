@@ -5,6 +5,7 @@
 package org.itson.dominio;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -20,6 +21,8 @@ public class Itinerario {
     private Float longitud;
     private Integer maxNumVisitantes;
     private Date fechaHoraItinerario;
+    private List<Zona> zonas;
+    private List<Persona> guias;
 
     // CONSTRUCTORES
     /**
@@ -61,7 +64,7 @@ public class Itinerario {
         this.longitud = longitud;
         this.maxNumVisitantes = maxNumVisitantes;
         this.fechaHoraItinerario = fechaHoraItinerario;
-    }
+    } 
 
     // GETTERS Y SETTERS
     public ObjectId getId() {
@@ -100,7 +103,19 @@ public class Itinerario {
     public void setFechaHoraItinerario(Date fechaHoraItinerario) {
         this.fechaHoraItinerario = fechaHoraItinerario;
     }
-
+    public List<Zona> getZonas() {
+        return zonas;
+    }
+    public void setZonas(List<Zona> zonas) {
+        this.zonas = zonas;
+    }
+    public List<Persona> getGuias() {
+        return guias;
+    }
+    public void setGuias(List<Persona> guias) {
+        this.guias = guias;
+    }
+    
     // MÉTODOS
     /**
      * Método hashCode
@@ -140,6 +155,7 @@ public class Itinerario {
         return "Itinerario{" + "id=" + id + ", nombre=" + nombre + 
                 ", duracionRecorrido=" + duracionRecorrido + ", longitud=" + 
                 longitud + ", maxNumVisitantes=" + maxNumVisitantes + 
-                ", fechaHoraItinerario=" + fechaHoraItinerario + '}';
+                ", fechaHoraItinerario=" + fechaHoraItinerario + ", zonas=" + 
+                zonas + ", guias=" + guias + '}';
     }
 }
