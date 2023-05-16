@@ -21,8 +21,23 @@ public class ConexionMongoDB {
     // ATRIBUTOS
     private final String nombreBD = "zoologicoDB";
     private MongoDatabase baseDatos;
+    private static ConexionMongoDB instancia;
+    
+    // CONSTRUCTORES
+    private ConexionMongoDB(){
+    }
     
     // MÉTODOS
+    /**
+     * Método Singleton que crea una instancia de la clase
+     * @return Un objeto ConexionMongoDB
+     */
+    public static ConexionMongoDB instance(){
+        if(instancia == null){
+            instancia = new ConexionMongoDB();
+        }
+        return instancia;
+    }
     /**
      * Método que nos permite obtener una base de datos en MongoDB
      * @return Una conexión a una base de datos en MongoDB
