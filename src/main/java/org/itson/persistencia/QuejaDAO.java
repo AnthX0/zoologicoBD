@@ -4,15 +4,25 @@
  */
 package org.itson.persistencia;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.util.List;
+import org.bson.Document;
 import org.itson.dominio.Queja;
 
 /**
  * @author Victor, Henry, Hermann y Adán
  * @version IDE 17
  */
-public class QuejaDAO implements IQuejaDAO{
+public class QuejaDAO implements IQuejaDAO {
 
+    private ConexionMongoDB conexion;
+    private MongoDatabase baseDatos;
+
+    public QuejaDAO() {
+       ConexionMongoDB conexion = ConexionMongoDB.instance();
+        baseDatos = conexion.getBaseDatos();
+    }
     @Override
     public Queja agregar(Queja queja) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -25,6 +35,17 @@ public class QuejaDAO implements IQuejaDAO{
     
     @Override
     public void guardarQueja(String queja, String correoElectronico, String telefono) {
+         // Obtener la colección donde se guardarán las quejas
+        MongoCollection<Document> collection = baseDatos.getCollection("queja");
+
+        // Crear un nuevo documento con los datos de la queja
+        Document quejaDocument = new Document();
+        quejaDocument.append("queja", queja)
+                .append("correoElectronico", correoElectronico)
+                .append("telefono", telefono);
+
+        // Insertar el documento en la colección
+        collection.insertOne(quejaDocument);
     }
 
     @Override
