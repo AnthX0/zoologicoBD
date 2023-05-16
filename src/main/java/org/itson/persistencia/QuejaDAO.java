@@ -20,9 +20,10 @@ public class QuejaDAO implements IQuejaDAO {
     private MongoDatabase baseDatos;
 
     public QuejaDAO() {
-       ConexionMongoDB conexion = ConexionMongoDB.instance();
+        ConexionMongoDB conexion = ConexionMongoDB.instance();
         baseDatos = conexion.getBaseDatos();
     }
+
     @Override
     public Queja agregar(Queja queja) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -32,10 +33,10 @@ public class QuejaDAO implements IQuejaDAO {
     public Queja eliminar(Queja queja) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void guardarQueja(String queja, String correoElectronico, String telefono) {
-         // Obtener la colección donde se guardarán las quejas
+        // Obtener la colección donde se guardarán las quejas
         MongoCollection<Document> collection = baseDatos.getCollection("queja");
 
         // Crear un nuevo documento con los datos de la queja

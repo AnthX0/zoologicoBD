@@ -6,6 +6,7 @@ package org.itson.dominio;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -14,10 +15,11 @@ import org.bson.types.ObjectId;
  * @version IDE 17
  */
 public class Persona {
+
     // ATRIBUTOS
     private ObjectId id;
     private String nombre;
-    private String[] direccion;
+    private List<String> direccion;
     private Integer telefono;
     private Date fechaIngreso;
 
@@ -34,7 +36,7 @@ public class Persona {
      * @param telefono Teléfono de la persona
      * @param fechaIngreso Fecha de ingreso al zoológico
      */
-    public Persona(String nombre, String[] direccion, Integer telefono, 
+    public Persona(String nombre, List<String> direccion, Integer telefono, 
             Date fechaIngreso) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -49,7 +51,7 @@ public class Persona {
      * @param telefono Teléfono de la persona
      * @param fechaIngreso Fecha de ingreso al zoológico
      */
-    public Persona(ObjectId id, String nombre, String[] direccion, 
+    public Persona(ObjectId id, String nombre, List<String> direccion, 
             Integer telefono, Date fechaIngreso) {
         this.id = id;
         this.nombre = nombre;
@@ -71,10 +73,10 @@ public class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String[] getDireccion() {
+    public List<String> getDireccion() {
         return direccion;
     }
-    public void setDireccion(String[] direccion) {
+    public void setDireccion(List<String> direccion) {
         this.direccion = direccion;
     }
     public Integer getTelefono() {
@@ -120,14 +122,15 @@ public class Persona {
         final Persona other = (Persona) obj;
         return Objects.equals(this.id, other.id);
     }
+
     /**
      * Método toString
+     *
      * @return Una cadena con el valor de los atributos de la clase
      */
     @Override
     public String toString() {
-        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", direccion=" 
-                + Arrays.toString(direccion) + ", telefono=" + telefono 
-                + ", fechaIngreso=" + fechaIngreso + '}';
+        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", fechaIngreso=" + fechaIngreso + '}';
     }
+
 }
