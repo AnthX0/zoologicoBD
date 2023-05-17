@@ -1,22 +1,13 @@
 package org.itson.zoologicobd;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import org.itson.dominio.Continente;
 import org.itson.dominio.Especie;
-import org.itson.dominio.Habitat;
-import org.itson.dominio.Persona;
 import org.itson.dominio.Zona;
-import org.itson.persistencia.ContinentesDAO;
-import org.itson.persistencia.EspeciesDAO;
-import org.itson.persistencia.HabitatDAO;
-import org.itson.persistencia.PersonasDAO;
-import org.itson.persistencia.QuejaDAO;
-import org.itson.persistencia.ZonaDAO;
+import org.itson.persistencia.DAO.ZonaDAO;
 
 /**
- * @author Victor
+ * @author Victor, Henry, Hermann y Adán
+ * @version IDE 17
  */
 public class ZoologicoBD {
     public static void main(String[] args) {
