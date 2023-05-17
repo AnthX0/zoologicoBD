@@ -1,8 +1,13 @@
 package org.itson.zoologicobd;
 
 import java.util.ArrayList;
+import java.util.Date;
+import org.itson.dominio.Cuidador;
 import org.itson.dominio.Especie;
+import org.itson.dominio.Guia;
 import org.itson.dominio.Zona;
+import org.itson.persistencia.DAO.CuidadoresDAO;
+import org.itson.persistencia.DAO.GuiasDAO;
 import org.itson.persistencia.DAO.ZonaDAO;
 
 /**
@@ -39,8 +44,8 @@ public class ZoologicoBD {
 //        System.out.println(cont.consultarContinentes());
 //
 //        PersonasDAO per = new PersonasDAO();
-//        ArrayList<String> direcciones = new ArrayList<>();
-//        direcciones.add("direccion");
+        ArrayList<String> direcciones = new ArrayList<>();
+        direcciones.add("direccion");
 //        Persona pers = new Persona("hermann", direcciones, 61414141, new Date(2001, 5, 12));
 //        Persona pers2 = new Persona("victor", direcciones, 343434, new Date(2023, 5, 12));
 //        per.agregar(pers);
@@ -59,12 +64,17 @@ public class ZoologicoBD {
 //        hab.agregar(habt);
 //        hab.agregar(habt2);
 //        System.out.println(hab.consultarHabitats());
-
-          ZonaDAO zz = new ZonaDAO();
-          Zona zona = new Zona("zona 1", 35f);
-          zona.setEspecies(especies);
-          zz.agregar(zona);
-         System.out.println( zz.consultarZonas());
+//          ZonaDAO zz = new ZonaDAO();
+//          Zona zona = new Zona("zona 1", 35f);
+//          zona.setEspecies(especies);
+//          zz.agregar(zona);
+//         System.out.println( zz.consultarZonas());
+//        CuidadoresDAO cuid = new CuidadoresDAO();
+//        Cuidador cud = new Cuidador(null, "hermann", direcciones, 3434, new Date(2001, 5, 12), especies, especies, new Date(2001, 5, 12));
+//        System.out.println(cuid.consultarCuidadores());
+        GuiasDAO gdao = new GuiasDAO();
+        Guia guia = new Guia(null, "salomon", direcciones, 343434, new Date(2023, 5, 12), null);
+        System.out.println(gdao.consultarGuias());
 
     }
 }
