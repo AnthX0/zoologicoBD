@@ -5,10 +5,12 @@ import java.util.Date;
 import org.itson.dominio.Cuidador;
 import org.itson.dominio.Especie;
 import org.itson.dominio.Guia;
+import org.itson.dominio.Queja;
 import org.itson.dominio.Zona;
 import org.itson.persistencia.DAO.CuidadoresDAO;
 import org.itson.persistencia.DAO.GuiasDAO;
 import org.itson.persistencia.DAO.ZonaDAO;
+import org.itson.persistencia.DAO.QuejaDAO;
 
 /**
  * @author Victor, Henry, Hermann y Adán
@@ -17,17 +19,19 @@ import org.itson.persistencia.DAO.ZonaDAO;
 public class ZoologicoBD {
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
-//        QuejaDAO dao = new QuejaDAO();
-//        dao.guardarQueja("QUEJA", "correo", "telefono");
-//
+        QuejaDAO dao = new QuejaDAO();
+        Queja queja = new Queja("nombre","QUEJA", 5454, "correo");
+//        dao.agregar(queja);
+        System.out.println(dao.consultarQuejas());
+
 //        EspeciesDAO esp = new EspeciesDAO();
-        Especie especie = new Especie("tigre", "felino", "felino tigre");
-        Especie especie2 = new Especie("leon", "felino", "felino leon");
-        Especie especie3 = new Especie("gato", "felino", "felino gato");
-         ArrayList<Especie> especies = new ArrayList<>();
-         especies.add(especie);
-         especies.add(especie2);
-         especies.add(especie3);
+//        Especie especie = new Especie("tigre", "felino", "felino tigre");
+//        Especie especie2 = new Especie("leon", "felino", "felino leon");
+//        Especie especie3 = new Especie("gato", "felino", "felino gato");
+//         ArrayList<Especie> especies = new ArrayList<>();
+//         especies.add(especie);
+//         especies.add(especie2);
+//         especies.add(especie3);
 //        esp.agregar(especie);
 //        esp.agregar(especie2);
 //        esp.agregar(especie3);
@@ -44,8 +48,8 @@ public class ZoologicoBD {
 //        System.out.println(cont.consultarContinentes());
 //
 //        PersonasDAO per = new PersonasDAO();
-        ArrayList<String> direcciones = new ArrayList<>();
-        direcciones.add("direccion");
+//        ArrayList<String> direcciones = new ArrayList<>();
+//        direcciones.add("direccion");
 //        Persona pers = new Persona("hermann", direcciones, 61414141, new Date(2001, 5, 12));
 //        Persona pers2 = new Persona("victor", direcciones, 343434, new Date(2023, 5, 12));
 //        per.agregar(pers);
@@ -72,9 +76,9 @@ public class ZoologicoBD {
 //        CuidadoresDAO cuid = new CuidadoresDAO();
 //        Cuidador cud = new Cuidador(null, "hermann", direcciones, 3434, new Date(2001, 5, 12), especies, especies, new Date(2001, 5, 12));
 //        System.out.println(cuid.consultarCuidadores());
-        GuiasDAO gdao = new GuiasDAO();
-        Guia guia = new Guia(null, "salomon", direcciones, 343434, new Date(2023, 5, 12), null);
-        System.out.println(gdao.consultarGuias());
+//        GuiasDAO gdao = new GuiasDAO();
+//        Guia guia = new Guia(null, "salomon", direcciones, 343434, new Date(2023, 5, 12), null);
+//        System.out.println(gdao.consultarGuias());
 
     }
 }

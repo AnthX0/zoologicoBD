@@ -4,11 +4,14 @@
  */
 package org.itson.persistencia.DAO;
 
+import com.mongodb.client.FindIterable;
 import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.itson.dominio.Queja;
 import org.itson.persistencia.Interfaces.IQuejaDAO;
 
@@ -28,12 +31,33 @@ public class QuejaDAO implements IQuejaDAO {
 
     @Override
     public Queja agregar(Queja queja) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Obtener la colección donde se guardarán las quejas
+        MongoCollection<Document> collection = baseDatos.getCollection("queja");
+
+        // Crear un nuevo documento con los datos de la queja
+        Document quejaDocument = new Document();
+        quejaDocument.append("nombre", queja.getNombre())
+                .append("descripcion", queja.getDescripcion())
+                .append("correoElectronico", queja.getEmail())
+                .append("telefono", queja.getTelefono());
+
+        // Insertar el documento en la colección
+        collection.insertOne(quejaDocument);
+        return queja;
     }
 
     @Override
     public Queja eliminar(Queja queja) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+          // Obtener la colección donde se guardan las queja
+        MongoCollection<Document> collection = baseDatos.getCollection("queja");
+
+        // Crear un filtro para encontrar la queja por su ID
+        Document filtro = new Document("nombre", queja.getNombre());
+        // Eliminar la especie de la colección
+        collection.deleteOne(filtro);
+
+        // Devolver la queja eliminada
+        return queja;
     }
 
     @Override
@@ -53,6 +77,28 @@ public class QuejaDAO implements IQuejaDAO {
 
     @Override
     public List<Queja> consultarQuejas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       List<Queja> listaQuejas = new ArrayList<>();
+
+        // Obtener la colección "quejas" de la base de datos
+        MongoCollection<Document> collection = baseDatos.getCollection("queja");
+
+        // Realizar la consulta de todas las quejas
+        FindIterable<Document> result = collection.find();
+
+        // Iterar sobre el resultado de la consulta y crear objetos Queja
+        for (Document document : result) {
+            ObjectId id = document.getObjectId("_id");
+            String nombre = document.getString("nombre");
+            String descripcion = document.getString("descripcion");
+            Integer telefono = document.getInteger("telefono");
+            String email = document.getString("email");
+            
+
+            // Crear el objeto Queja y agregarlo a la lista
+            Queja queja = new Queja(id, nombre, descripcion, telefono, email);
+            listaQuejas.add(queja);
+        }
+
+        return listaQuejas;
     }
 }
