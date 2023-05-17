@@ -12,6 +12,7 @@ import org.itson.dominio.Queja;
  * @version IDE 17
  */
 public interface IQuejaDAO {
+    // MÉTODOS
     /**
      * Método que agrega un objeto de tipo Queja
      * @param queja Objeto a agregar

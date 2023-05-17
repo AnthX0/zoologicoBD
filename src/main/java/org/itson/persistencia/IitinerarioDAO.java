@@ -13,6 +13,7 @@ import org.itson.dominio.Itinerario;
  * @version IDE 17
  */
 public interface IitinerarioDAO {
+    // MÉTODOS
     /**
      * Método que crea un objeto de tipo Itinerario
      * @param itinerario Objeto a agregar
