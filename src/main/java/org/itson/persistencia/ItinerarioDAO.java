@@ -1,12 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package org.itson.persistencia;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.itson.dominio.Especie;
 import org.itson.dominio.Itinerario;
+import org.itson.dominio.Persona;
+import org.itson.dominio.Zona;
 
 /**
  * @author Victor, Henry, Hermann y Adán
@@ -14,9 +19,19 @@ import org.itson.dominio.Itinerario;
  */
 public class ItinerarioDAO implements IitinerarioDAO {
 
+    private ConexionMongoDB conexion;
+    private MongoDatabase baseDatos;
+
+    public ItinerarioDAO() {
+        ConexionMongoDB conexion = ConexionMongoDB.instance();
+        baseDatos = conexion.getBaseDatos();
+    }
+
     @Override
     public Itinerario agregar(Itinerario itinerario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        return null;
+
     }
 
     @Override
@@ -28,7 +43,7 @@ public class ItinerarioDAO implements IitinerarioDAO {
     public List<Itinerario> consultarItinerariosUltimoMes() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public List<Itinerario> consultarItinerariosPorFecha(Date fechaHoraItinerario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
