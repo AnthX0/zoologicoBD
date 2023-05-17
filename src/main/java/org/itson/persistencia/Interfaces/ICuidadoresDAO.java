@@ -4,7 +4,6 @@
  */
 package org.itson.persistencia.Interfaces;
 
-import org.itson.persistencia.*;
 import java.util.Date;
 import java.util.List;
 import org.itson.dominio.Cuidador;
