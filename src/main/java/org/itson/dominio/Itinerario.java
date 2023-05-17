@@ -22,7 +22,7 @@ public class Itinerario {
     private Integer maxNumVisitantes;
     private Date fechaHoraItinerario;
     private List<Zona> zonas;
-    private List<Persona> guias;
+    private List<Guia> guias;
 
     // CONSTRUCTORES
     /**
@@ -109,10 +109,10 @@ public class Itinerario {
     public void setZonas(List<Zona> zonas) {
         this.zonas = zonas;
     }
-    public List<Persona> getGuias() {
+    public List<Guia> getGuias() {
         return guias;
     }
-    public void setGuias(List<Persona> guias) {
+    public void setGuias(List<Guia> guias) {
         this.guias = guias;
     }
     

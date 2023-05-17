@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import org.bson.Document;
+import org.itson.dominio.Cuidador;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Zona;
 import org.itson.persistencia.Interfaces.IEspeciesDAO;
@@ -93,7 +94,7 @@ public class EspeciesDAO implements IEspeciesDAO {
             especie.setDescripcion(documento.getString("descripcion"));
             especie.setHabitats(documento.getList("habitats", Habitat.class));
             especie.setZonas(documento.getList("zonas", Zona.class));
-            especie.setCuidadores(documento.getList("cuidadores", Persona.class));
+            especie.setCuidadores(documento.getList("cuidadores", Cuidador.class));
             especies.add(especie);
         }
         // Cerrar el cursor
@@ -131,7 +132,7 @@ public class EspeciesDAO implements IEspeciesDAO {
             especie.setDescripcion(documento.getString("descripcion"));
             especie.setHabitats(documento.getList("habitats", Habitat.class));
             especie.setZonas(documento.getList("zonas", Zona.class));
-            especie.setCuidadores(documento.getList("cuidadores", Persona.class));
+            especie.setCuidadores(documento.getList("cuidadores", Cuidador.class));
             especies.add(especie);
         }
         // Cerrar el cursor

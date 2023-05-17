@@ -1,13 +1,17 @@
 
 package org.itson.persistencia.DAO;
 
+import com.mongodb.client.FindIterable;
 import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
+import org.itson.dominio.Guia;
 import org.itson.dominio.Itinerario;
+import org.itson.dominio.Zona;
 import org.itson.persistencia.Interfaces.IitinerarioDAO;
 
 /**
@@ -64,15 +68,28 @@ public class ItinerarioDAO implements IitinerarioDAO {
      */
     @Override
     public List<Itinerario> consultarItinerariosUltimoMes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    /**
-     * Método que consulta los itinerarios que coincidan con el parámetro dado
-     * @param fechaHoraItinerario Fecha y hora del itinerario
-     * @return Una lista con los itinerarios coincidentes
-     */
-    @Override
-    public List<Itinerario> consultarItinerariosPorFecha(Date fechaHoraItinerario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Itinerario> itinerarios = new ArrayList<>();
+        // Obtener la colección "itinerario" de la base de datos
+        MongoCollection<Document> collection = baseDatos.getCollection("itinerario");
+        // Obtener todos los documentos de la colección
+        FindIterable<Document> documentos = collection.find();
+        // Recorrer los documentos y mapearlos a objetos Persona
+        try (MongoCursor<Document> cursor = documentos.iterator()) {
+            while (cursor.hasNext()) {
+                Document documento = cursor.next();
+                // Crear una instancia de Itinerario y asignar los valores del documento
+                Itinerario itinerario = new Itinerario();
+                itinerario.setId(documento.getObjectId("_id"));
+                itinerario.setNombre(documento.getString("nombre"));
+                itinerario.setDuracionRecorrido(documento.getInteger("duracionRecorrido"));
+                itinerario.setLongitud(documento.getDouble("longitud").floatValue());
+                itinerario.setMaxNumVisitantes(documento.getInteger("maxNumVisitantes"));
+                itinerario.setFechaHoraItinerario(documento.getDate("fechaHoraItinerario"));
+                itinerario.setZonas(documento.getList("zonas", Zona.class));
+                itinerario.setGuias(documento.getList("guias", Guia.class));
+                itinerarios.add(itinerario);
+            }
+        }
+        return itinerarios;
     }
 }

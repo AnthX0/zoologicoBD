@@ -4,13 +4,17 @@
  */
 package org.itson.persistencia.DAO;
 
+import com.mongodb.client.FindIterable;
 import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.itson.dominio.Continente;
 import org.itson.dominio.Habitat;
+import org.itson.dominio.Persona;
 import org.itson.persistencia.Interfaces.IHabitatsDAO;
 
 /**
@@ -79,7 +83,26 @@ public class HabitatDAO implements IHabitatsDAO {
      */
     @Override
     public List<Habitat> consultarHabitats() {
-        return null;
+        List<Habitat> habitats = new ArrayList<>();
+        // Obtener la colección "Habitat" de la base de datos
+        MongoCollection<Document> collection = baseDatos.getCollection("habitat");
+        // Obtener todos los documentos de la colección
+        FindIterable<Document> documentos = collection.find();
+        // Recorrer los documentos y mapearlos a objetos Habitat
+        try (MongoCursor<Document> cursor = documentos.iterator()) {
+            while (cursor.hasNext()) {
+                Document documento = cursor.next();
+                // Crear una instancia de Habitat y asignar los valores del documento
+                Habitat habitat = new Habitat();
+                habitat.setId(documento.getObjectId("_id"));
+                habitat.setNombre(documento.getString("nombre"));
+                habitat.setClima(documento.getString("clima"));
+                habitat.setTipoVegetacion(documento.getString("tipoVegetacion"));
+                habitat.setContinentes(documento.getList("continentes", Continente.class));
+                habitats.add(habitat);
+            }
+        }
+        return habitats;
     }
     /**
      * Método que crea una lista con los objetos Habitat de ciertos continentes
@@ -88,6 +111,33 @@ public class HabitatDAO implements IHabitatsDAO {
      */
     @Override
     public List<Habitat> consultarHabitatsPorContinente(List<Continente> continentes) {
-        return null;
+        // Obtener la colección donde se guardan los habitats
+        MongoCollection<Document> collection = baseDatos.getCollection("Habitat");
+        // Crear una lista para almacenar los habitats consultados
+        List<Habitat> habitats = new ArrayList<>();
+        // Crear un filtro para buscar habitats que tengan los continentes especificados
+        List<String> continentesIds = new ArrayList<>();
+        for (Continente continente : continentes) {
+            String continenteId = continente.getId().toString();
+            continentesIds.add(continenteId);
+        }
+        Document filtro = new Document("continentes", new Document("$in", continentesIds));
+        // Obtener un cursor para iterar sobre los documentos que cumplen con el filtro
+        MongoCursor<Document> cursor = collection.find(filtro).iterator();
+        // Recorrer los documentos y convertirlos a objetos Especie
+        while (cursor.hasNext()) {
+            Document documento = cursor.next();
+            Habitat habitat = new Habitat();
+            habitat.setId(documento.getObjectId("_id"));
+            habitat.setNombre(documento.getString("nombre"));
+            habitat.setClima(documento.getString("clima"));
+            habitat.setTipoVegetacion(documento.getString("tipoVegetacion"));
+            habitat.setContinentes(documento.getList("continentes", Continente.class));
+            habitats.add(habitat);
+        }
+        // Cerrar el cursor
+        cursor.close();
+        // Devolver la lista de especies consultadas
+        return habitats;
     }
 }

@@ -20,7 +20,7 @@ public class Especie {
     private String descripcion;
     private List<Habitat> habitats;
     private List<Zona> zonas;
-    private List<Persona> cuidadores;
+    private List<Cuidador> cuidadores;
 
     // CONSTRUCTORES
     /**
@@ -92,10 +92,10 @@ public class Especie {
     public void setZonas(List<Zona> zonas) {
         this.zonas = zonas;
     }
-    public List<Persona> getCuidadores() {
+    public List<Cuidador> getCuidadores() {
         return cuidadores;
     }
-    public void setCuidadores(List<Persona> cuidadores) {
+    public void setCuidadores(List<Cuidador> cuidadores) {
         this.cuidadores = cuidadores;
     }
 
