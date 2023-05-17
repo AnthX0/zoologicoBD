@@ -1,6 +1,7 @@
 
-package org.itson.persistencia;
+package org.itson.persistencia.DAO;
 
+import org.itson.persistencia.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.itson.dominio.Persona;
+import org.itson.persistencia.Interfaces.IPersonasDAO;
 
 /**
  *

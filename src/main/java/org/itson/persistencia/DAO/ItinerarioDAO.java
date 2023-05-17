@@ -1,6 +1,7 @@
 
-package org.itson.persistencia;
+package org.itson.persistencia.DAO;
 
+import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.itson.dominio.Especie;
 import org.itson.dominio.Itinerario;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Zona;
+import org.itson.persistencia.Interfaces.IitinerarioDAO;
 
 /**
  * @author Victor, Henry, Hermann y Adán

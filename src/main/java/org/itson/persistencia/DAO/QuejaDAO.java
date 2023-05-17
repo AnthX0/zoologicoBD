@@ -2,13 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package org.itson.persistencia;
+package org.itson.persistencia.DAO;
 
+import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
 import org.bson.Document;
 import org.itson.dominio.Queja;
+import org.itson.persistencia.Interfaces.IQuejaDAO;
 
 /**
  * @author Victor, Henry, Hermann y Adán

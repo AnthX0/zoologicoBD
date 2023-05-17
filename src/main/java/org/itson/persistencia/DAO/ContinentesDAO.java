@@ -1,5 +1,6 @@
-package org.itson.persistencia;
+package org.itson.persistencia.DAO;
 
+import org.itson.persistencia.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.itson.dominio.Continente;
+import org.itson.persistencia.Interfaces.IContinentesDAO;
 
 /**
  *

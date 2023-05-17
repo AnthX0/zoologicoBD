@@ -1,6 +1,7 @@
 
-package org.itson.persistencia;
+package org.itson.persistencia.Interfaces;
 
+import org.itson.persistencia.*;
 import java.util.List;
 import org.itson.dominio.Continente;
 import org.itson.dominio.Habitat;

@@ -1,6 +1,7 @@
 
-package org.itson.persistencia;
+package org.itson.persistencia.DAO;
 
+import org.itson.persistencia.*;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
 import org.itson.dominio.Especie;
@@ -9,9 +10,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Zona;
+import org.itson.persistencia.Interfaces.IEspeciesDAO;
 
 /**
  *
