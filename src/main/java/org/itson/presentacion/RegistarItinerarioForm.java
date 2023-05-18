@@ -4,6 +4,9 @@
  */
 package org.itson.presentacion;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eduar
@@ -27,16 +30,84 @@ public class RegistarItinerarioForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelLongitud = new javax.swing.JLabel();
+        jLabelDuracion = new javax.swing.JLabel();
+        jLabelMaxVisitantes = new javax.swing.JLabel();
+        jLabelDiasSemana = new javax.swing.JLabel();
+        jLabelHorarios = new javax.swing.JLabel();
+        jLabelZonas = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldDuracion = new javax.swing.JTextField();
+        jTextFieldLongitud = new javax.swing.JTextField();
+        jTextFieldMaxVisitantes = new javax.swing.JTextField();
+        jCheckBoxLunes = new javax.swing.JCheckBox();
+        jCheckBoxMartes = new javax.swing.JCheckBox();
+        jCheckBoxJueves = new javax.swing.JCheckBox();
+        jCheckBoxMiercoles = new javax.swing.JCheckBox();
+        jCheckBoxViernes = new javax.swing.JCheckBox();
+        jCheckBoxSabado = new javax.swing.JCheckBox();
+        jCheckBoxDomingo = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaHorarios = new javax.swing.JTextArea();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Registrar itinerario");
 
-        jButton1.setText("Atrás");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
+        jLabelNombre.setText("Nombre");
+
+        jLabelLongitud.setText("Longitud");
+
+        jLabelDuracion.setText("Duración");
+
+        jLabelMaxVisitantes.setText("Max. Visitantes");
+
+        jLabelDiasSemana.setText("Días de la semana");
+
+        jLabelHorarios.setText("Horarios");
+
+        jLabelZonas.setText("Zonas");
+
+        jCheckBoxLunes.setText("Lunes");
+
+        jCheckBoxMartes.setText("Martes");
+
+        jCheckBoxJueves.setText("Jueves");
+
+        jCheckBoxMiercoles.setText("Miercoles");
+
+        jCheckBoxViernes.setText("Viernes");
+
+        jCheckBoxSabado.setText("Sábado");
+
+        jCheckBoxDomingo.setText("Domingo");
+
+        jTextAreaHorarios.setColumns(20);
+        jTextAreaHorarios.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaHorarios);
+
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
@@ -44,33 +115,186 @@ public class RegistarItinerarioForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelDuracion)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelDiasSemana)
+                                .addComponent(jLabelHorarios, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelZonas, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelMaxVisitantes, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelLongitud, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabelNombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombre)
+                            .addComponent(jTextFieldDuracion)
+                            .addComponent(jTextFieldLongitud)
+                            .addComponent(jTextFieldMaxVisitantes)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBoxLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jCheckBoxMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBoxViernes, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jCheckBoxSabado, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxDomingo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCheckBoxMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxJueves, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(jButtonRegresar)
+                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDuracion)
+                    .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelLongitud)
+                    .addComponent(jTextFieldLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMaxVisitantes)
+                    .addComponent(jTextFieldMaxVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDiasSemana)
+                    .addComponent(jCheckBoxLunes)
+                    .addComponent(jCheckBoxMartes)
+                    .addComponent(jCheckBoxMiercoles)
+                    .addComponent(jCheckBoxJueves))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxViernes)
+                    .addComponent(jCheckBoxSabado)
+                    .addComponent(jCheckBoxDomingo))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelHorarios)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabelZonas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRegresar)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonGuardar))
+                .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         pantallaPrincipal ventana = new pantallaPrincipal();
         ventana.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // Obtener los valores de los campos
+        String nombre = jTextFieldNombre.getText();
+        int duracion = Integer.parseInt(jTextFieldDuracion.getText());
+        int longitud = Integer.parseInt(jTextFieldLongitud.getText());
+        int maxVisitantes = Integer.parseInt(jTextFieldMaxVisitantes.getText());
+
+        // Obtener los días de la semana seleccionados
+        StringBuilder diasSemanaBuilder = new StringBuilder();
+        if (jCheckBoxLunes.isSelected()) {
+            diasSemanaBuilder.append("Lunes, ");
+        }
+        if (jCheckBoxMartes.isSelected()) {
+            diasSemanaBuilder.append("Martes, ");
+        }
+        if (jCheckBoxMiercoles.isSelected()) {
+            diasSemanaBuilder.append("Miércoles, ");
+        }
+        if (jCheckBoxJueves.isSelected()) {
+            diasSemanaBuilder.append("Jueves, ");
+        }
+        if (jCheckBoxViernes.isSelected()) {
+            diasSemanaBuilder.append("Viernes, ");
+        }
+        if (jCheckBoxSabado.isSelected()) {
+            diasSemanaBuilder.append("Sábado, ");
+        }
+        if (jCheckBoxDomingo.isSelected()) {
+            diasSemanaBuilder.append("Domingo, ");
+        }
+        String diasSemana = diasSemanaBuilder.toString();
+
+        // Obtener los horarios
+        String horarios = jTextAreaHorarios.getText();
+
+        // Obtener las zonas seleccionadas
+        StringBuilder zonasBuilder = new StringBuilder();
+        
+        String zonas = zonasBuilder.toString();
+
+        // Validar los campos
+        if (nombre.isEmpty() || duracion <= 0 || longitud <= 0 || maxVisitantes <= 0 || diasSemana.isEmpty()
+                || horarios.isEmpty() || zonas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios. Por favor, llene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar las restricciones
+        if (duracion > 90) {
+            JOptionPane.showMessageDialog(this, "La duración no puede ser mayor a 90 minutos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (longitud > 1500) {
+            JOptionPane.showMessageDialog(this, "La longitud no puede ser mayor a 1500 metros.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (maxVisitantes > 30) {
+            JOptionPane.showMessageDialog(this, "El número máximo de visitantes no puede ser mayor a 30.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Guardar el itinerario
+        // ...
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "El itinerario se ha guardado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,7 +333,29 @@ public class RegistarItinerarioForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JCheckBox jCheckBoxDomingo;
+    private javax.swing.JCheckBox jCheckBoxJueves;
+    private javax.swing.JCheckBox jCheckBoxLunes;
+    private javax.swing.JCheckBox jCheckBoxMartes;
+    private javax.swing.JCheckBox jCheckBoxMiercoles;
+    private javax.swing.JCheckBox jCheckBoxSabado;
+    private javax.swing.JCheckBox jCheckBoxViernes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelDiasSemana;
+    private javax.swing.JLabel jLabelDuracion;
+    private javax.swing.JLabel jLabelHorarios;
+    private javax.swing.JLabel jLabelLongitud;
+    private javax.swing.JLabel jLabelMaxVisitantes;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelZonas;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaHorarios;
+    private javax.swing.JTextField jTextFieldDuracion;
+    private javax.swing.JTextField jTextFieldLongitud;
+    private javax.swing.JTextField jTextFieldMaxVisitantes;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
