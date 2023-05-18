@@ -4,6 +4,13 @@
  */
 package org.itson.presentacion;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import org.itson.dominio.Itinerario;
+import org.itson.negocio.FachadaNegocio;
+
 /**
  *
  * @author eduar
@@ -15,6 +22,20 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
      */
     public RegistrarQuejaForm() {
         initComponents();
+        FachadaNegocio fachada = new FachadaNegocio();
+
+        List<String> listaItinerarios = fachada.llenarListaNombreItinerarios();
+        Object[] elementos = listaItinerarios.toArray();
+        DefaultListModel<String> modelLista = new DefaultListModel<>();
+
+        // Paso 5: Agregar elementos al modelo de lista
+        for (String itinerario : listaItinerarios) {
+            modelLista.addElement(itinerario.toString());
+        }
+
+        // Paso 6: Asignar el modelo de lista a la JList
+        lista.setModel(modelLista);
+
     }
 
     /**
@@ -28,6 +49,12 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lista = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lista3 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lista2 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,6 +67,27 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
             }
         });
 
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                MostrarListaFechaDia(evt);
+            }
+        });
+        jScrollPane1.setViewportView(lista);
+
+        lista3.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lista3ValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lista3);
+
+        lista2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                MostrarListaHoras(evt);
+            }
+        });
+        jScrollPane3.setViewportView(lista2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -47,19 +95,35 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -72,6 +136,42 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void MostrarListaFechaDia(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_MostrarListaFechaDia
+        FachadaNegocio fachada = new FachadaNegocio();
+
+        List<Date> listaItinerarios = fachada.llenarListaItinerarioFechaDia();
+        Object[] elementos = listaItinerarios.toArray();
+        DefaultListModel<String> modelLista = new DefaultListModel<>();
+
+        // Paso 5: Agregar elementos al modelo de lista
+        for (Date itinerario : listaItinerarios) {
+            modelLista.addElement(itinerario.toString());
+        }
+
+        // Paso 6: Asignar el modelo de lista a la JList
+        lista2.setModel(modelLista);
+    }//GEN-LAST:event_MostrarListaFechaDia
+
+    private void lista3ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lista3ValueChanged
+        
+    }//GEN-LAST:event_lista3ValueChanged
+
+    private void MostrarListaHoras(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_MostrarListaHoras
+        FachadaNegocio fachada = new FachadaNegocio();
+
+        List<Date> listaItinerarios = fachada.llenarListaItinerarioFechaDia();
+        Object[] elementos = listaItinerarios.toArray();
+        DefaultListModel<String> modelLista = new DefaultListModel<>();
+
+        // Paso 5: Agregar elementos al modelo de lista
+        for (Date itinerario : listaItinerarios) {
+            modelLista.addElement(itinerario.getHours()+":"+itinerario.getMinutes()+" hrs");
+        }
+
+        // Paso 6: Asignar el modelo de lista a la JList
+        lista3.setModel(modelLista);
+    }//GEN-LAST:event_MostrarListaHoras
 
     /**
      * @param args the command line arguments
@@ -112,5 +212,11 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> lista;
+    private javax.swing.JList<String> lista2;
+    private javax.swing.JList<String> lista3;
     // End of variables declaration//GEN-END:variables
 }

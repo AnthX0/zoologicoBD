@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.negocio;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.itson.dominio.Guia;
+import org.itson.dominio.Itinerario;
 import org.itson.dominio.Zona;
 import org.itson.persistencia.DAO.GuiasDAO;
+import org.itson.persistencia.DAO.ItinerarioDAO;
 import org.itson.persistencia.DAO.ZonaDAO;
 
 /**
@@ -29,5 +29,40 @@ public class FachadaNegocio {
     public void recuperarGuias(){
         GuiasDAO guiasdao = new GuiasDAO();
         guiasdao.consultarGuias();
+    }
+
+    public void buscarItinerarioUltimoMes() {
+        ItinerarioDAO itinerariodao = new ItinerarioDAO();
+        System.out.println(itinerariodao.consultarItinerariosUltimoMes());
+    }
+
+    public List<String> llenarListaNombreItinerarios() {
+        ItinerarioDAO itinerariodao = new ItinerarioDAO();
+        List<Itinerario> lista = itinerariodao.consultarItinerarios();
+        List<String> listanombres = new ArrayList<>();;
+        for (int i = 0; i < lista.size(); i++) {
+            listanombres.add(lista.get(i).getNombre());
+        }
+        return listanombres;
+    }
+    
+     public List<Date> llenarListaItinerarioFechaDia() {
+        ItinerarioDAO itinerariodao = new ItinerarioDAO();
+        List<Itinerario> lista = itinerariodao.consultarItinerarios();
+        List<Date> listafechadia = new ArrayList<>();;
+        for (int i = 0; i < lista.size(); i++) {
+            listafechadia.add(lista.get(i).getFechaHoraItinerario());
+        }
+        return listafechadia;
+    }
+     
+      public List<String> llenarListaItinerarioHora() {
+        ItinerarioDAO itinerariodao = new ItinerarioDAO();
+        List<Itinerario> lista = itinerariodao.consultarItinerarios();
+        List<String> listanombres = new ArrayList<>();;
+        for (int i = 0; i < lista.size(); i++) {
+            listanombres.add(lista.get(i).getNombre());
+        }
+        return listanombres;
     }
 }

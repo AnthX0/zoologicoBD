@@ -6,7 +6,12 @@ import org.itson.persistencia.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.bson.Document;
 import org.itson.dominio.Guia;
@@ -40,18 +45,30 @@ public class ItinerarioDAO implements IitinerarioDAO {
      */
     @Override
     public Itinerario agregar(Itinerario itinerario) {
-        MongoCollection<Document> collection = baseDatos.getCollection("persona");
+        MongoCollection<Document> collection = baseDatos.getCollection("itinerario");
         Document documentoItinerario = new Document();
         documentoItinerario.append("nombre", itinerario.getNombre());
         documentoItinerario.append("duracionRecorrido", itinerario.getDuracionRecorrido());
         documentoItinerario.append("longitud", itinerario.getLongitud());
         documentoItinerario.append("maxNumVisitantes", itinerario.getMaxNumVisitantes());
-        documentoItinerario.append("fechaHoraItinerario", itinerario.getFechaHoraItinerario());
+        GregorianCalendar fechaHoraItinerario = new GregorianCalendar(
+                itinerario.getFechaHoraItinerario().getYear(),
+                itinerario.getFechaHoraItinerario().getMonth() - 1, // El mes en GregorianCalendar es base 0
+                itinerario.getFechaHoraItinerario().getDay(),
+                itinerario.getFechaHoraItinerario().getHours(),
+                itinerario.getFechaHoraItinerario().getMinutes()
+        );
+
+        // Obtener el timestamp en milisegundos
+        long timestamp = fechaHoraItinerario.getTimeInMillis();
+        documentoItinerario.append("fechaHoraItinerario", new Date(timestamp));
         collection.insertOne(documentoItinerario);
         return itinerario;
     }
+
     /**
      * Método que elimina un objeto de tipo Itinerario
+     *
      * @param itinerario Objeto a eliminar
      * @return El objeto Itinerario eliminado
      */
@@ -66,8 +83,8 @@ public class ItinerarioDAO implements IitinerarioDAO {
      * Método que consulta todos los itinerarios creados el último mesa
      * @return Una lista con los itinerarios
      */
-    @Override
-    public List<Itinerario> consultarItinerariosUltimoMes() {
+    
+    public List<Itinerario> consultarItinerarios() {
         List<Itinerario> itinerarios = new ArrayList<>();
         // Obtener la colección "itinerario" de la base de datos
         MongoCollection<Document> collection = baseDatos.getCollection("itinerario");
@@ -91,5 +108,51 @@ public class ItinerarioDAO implements IitinerarioDAO {
             }
         }
         return itinerarios;
+    }
+
+    @Override
+    public List<Itinerario> consultarItinerariosUltimoMes() {
+        // Obtener la colección de itinerarios
+        MongoCollection<Document> collection = baseDatos.getCollection("itinerario");
+
+        // Consultar todos los itinerarios
+        FindIterable<Document> iterable = collection.find();
+
+        // Crear lista para almacenar todos los itinerarios
+        List<Itinerario> todosItinerarios = new ArrayList<>();
+
+        // Recorrer los resultados y convertirlos a objetos Itinerario
+        for (Document documento : iterable) {
+            // Crear el objeto Itinerario a partir del documento
+            Itinerario itinerario = new Itinerario();
+            itinerario.setId(documento.getObjectId("_id"));
+            itinerario.setNombre(documento.getString("nombre"));
+            itinerario.setDuracionRecorrido(documento.getInteger("duracionRecorrido"));
+            itinerario.setLongitud(documento.getDouble("longitud").floatValue());
+            itinerario.setMaxNumVisitantes(documento.getInteger("maxNumVisitantes"));
+            itinerario.setFechaHoraItinerario(documento.getDate("fechaHoraItinerario"));
+            itinerario.setZonas(documento.getList("zonas", Zona.class));
+            itinerario.setGuias(documento.getList("guias", Guia.class));
+            todosItinerarios.add(itinerario);
+        }
+        // Obtener la fecha del último mes
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.MONTH, -1); // Restar 1 mes
+        Date fechaUltimoMes = calendar.getTime();
+
+        // Crear lista para almacenar los itinerarios del último mes
+        List<Itinerario> itinerariosUltimoMes = new ArrayList<>();
+
+        // Filtrar los itinerarios que coincidan con la fecha del último mes
+        for (Itinerario itinerario : todosItinerarios) {
+            if (itinerario.getFechaHoraItinerario().after(fechaUltimoMes)) {
+                if (itinerario.getFechaHoraItinerario().getYear() == calendar.getTime().getYear()) {
+                    itinerariosUltimoMes.add(itinerario);
+                }
+            }
+        }
+
+// Retornar la lista de itinerarios del último mes
+        return itinerariosUltimoMes;
     }
 }
