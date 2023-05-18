@@ -56,13 +56,13 @@ public class FachadaNegocio {
         return listafechadia;
     }
      
-      public List<String> llenarListaItinerarioHora() {
-        ItinerarioDAO itinerariodao = new ItinerarioDAO();
+      public List<Date> llenarListaItinerarioHora() {
+       ItinerarioDAO itinerariodao = new ItinerarioDAO();
         List<Itinerario> lista = itinerariodao.consultarItinerarios();
-        List<String> listanombres = new ArrayList<>();;
+        List<Date> listafechadia = new ArrayList<>();;
         for (int i = 0; i < lista.size(); i++) {
-            listanombres.add(lista.get(i).getNombre());
+            listafechadia.add(lista.get(i).getFechaHoraItinerario());
         }
-        return listanombres;
+        return listafechadia;
     }
 }
