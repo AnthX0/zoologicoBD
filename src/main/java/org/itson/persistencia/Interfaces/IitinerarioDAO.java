@@ -4,7 +4,6 @@
  */
 package org.itson.persistencia.Interfaces;
 
-import java.util.Date;
 import java.util.List;
 import org.itson.dominio.Itinerario;
 
@@ -26,6 +25,11 @@ public interface IitinerarioDAO {
      * @return El objeto Itinerario eliminado
      */
     public Itinerario eliminar(Itinerario itinerario);
+    /**
+     * Método que consulta todos los objetos Itinerario creados
+     * @return La lista de itinerarios
+     */
+    public List<Itinerario> consultarItinerarios();
     /**
      * Método que consulta todos los itinerarios creados el último mesa
      * @return Una lista con los itinerarios

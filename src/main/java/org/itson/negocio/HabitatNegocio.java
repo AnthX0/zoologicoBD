@@ -4,16 +4,21 @@
  */
 package org.itson.negocio;
 
+import org.itson.dominio.Continente;
+import org.itson.dominio.Habitat;
+
 /**
  * @author Victor, Henry, Hermann y Adán
  * @version IDE 17
  */
-public class QuejaNegocio {
+public class HabitatNegocio {
     // MÉTODOS
-    public void verificarNombreQueja(String nombre){
+    public void verificarExistencia(Habitat habitat){
     }
-    public void verificarCorreoQueja(String correo){
+    public void verificarNombreHabitat(String nombre){
     }
-    public void verificarTelefonoQueja(String telefono){
+    public void verificarTipoHabitat(String tipo){
+    }
+    public void verificarContinente(Continente continente){
     }
 }

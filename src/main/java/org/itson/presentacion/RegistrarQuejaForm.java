@@ -4,11 +4,9 @@
  */
 package org.itson.presentacion;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import org.itson.dominio.Itinerario;
 import org.itson.negocio.FachadaNegocio;
 
 /**

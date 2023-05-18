@@ -8,12 +8,6 @@ package org.itson.negocio;
  * @author Victor, Henry, Hermann y Adán
  * @version IDE 17
  */
-public class QuejaNegocio {
+public class EspecieNegocio {
     // MÉTODOS
-    public void verificarNombreQueja(String nombre){
-    }
-    public void verificarCorreoQueja(String correo){
-    }
-    public void verificarTelefonoQueja(String telefono){
-    }
 }
