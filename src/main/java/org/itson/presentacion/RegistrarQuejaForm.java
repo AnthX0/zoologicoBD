@@ -4,10 +4,7 @@
  */
 package org.itson.presentacion;
 
-import java.util.Date;
-import java.util.List;
-import javax.swing.DefaultListModel;
-import org.itson.negocio.FachadaNegocio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,20 +17,6 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
      */
     public RegistrarQuejaForm() {
         initComponents();
-        FachadaNegocio fachada = new FachadaNegocio();
-
-        List<String> listaItinerarios = fachada.llenarListaNombreItinerarios();
-        Object[] elementos = listaItinerarios.toArray();
-        DefaultListModel<String> modelLista = new DefaultListModel<>();
-
-        // Paso 5: Agregar elementos al modelo de lista
-        for (String itinerario : listaItinerarios) {
-            modelLista.addElement(itinerario.toString());
-        }
-
-        // Paso 6: Asignar el modelo de lista a la JList
-        lista.setModel(modelLista);
-
     }
 
     /**
@@ -48,11 +31,24 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lista = new javax.swing.JList<>();
+        jListItinerarios = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lista3 = new javax.swing.JList<>();
+        jListFechas = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        lista2 = new javax.swing.JList<>();
+        jListHoras = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButtonEnviar = new javax.swing.JButton();
+        jTextFieldNombreGuia = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextAreaQueja = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jTextFieldTelefono = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,65 +61,150 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
             }
         });
 
-        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                MostrarListaFechaDia(evt);
-            }
+        jListItinerarios.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(lista);
+        jScrollPane1.setViewportView(jListItinerarios);
 
-        lista3.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lista3ValueChanged(evt);
-            }
+        jListFechas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(lista3);
+        jScrollPane2.setViewportView(jListFechas);
 
-        lista2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                MostrarListaHoras(evt);
+        jListHoras.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jListHoras);
+
+        jLabel2.setText("Lista itinerarios");
+
+        jLabel3.setText("Nombre Guía");
+
+        jLabel4.setText("Lista fechas");
+
+        jLabel5.setText("Lista horas");
+
+        jLabel6.setText("Queja");
+
+        jLabel7.setText("Correo electrónico");
+
+        jButtonEnviar.setText("Enviar");
+        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnviarActionPerformed(evt);
             }
         });
-        jScrollPane3.setViewportView(lista2);
+
+        jTextAreaQueja.setColumns(20);
+        jTextAreaQueja.setRows(5);
+        jScrollPane4.setViewportView(jTextAreaQueja);
+
+        jLabel8.setText("Teléfono");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNombreGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(210, Short.MAX_VALUE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCorreo))
+                        .addGap(221, 221, 221))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 158, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(29, 29, 29))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButtonEnviar))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))))
         );
 
         pack();
@@ -135,42 +216,61 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void MostrarListaFechaDia(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_MostrarListaFechaDia
-        FachadaNegocio fachada = new FachadaNegocio();
+    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
+        String itinerarioSeleccionado = jListItinerarios.getSelectedValue();
+        String fechaSeleccionada = jListFechas.getSelectedValue();
+        String horaSeleccionada = jListHoras.getSelectedValue();
+        String nombreGuia = jTextFieldNombreGuia.getText();
+        String textoQueja = jTextAreaQueja.getText();
+        String correo = jTextFieldCorreo.getText();
+        String telefono = jTextFieldTelefono.getText();
 
-        List<Date> listaItinerarios = fachada.llenarListaItinerarioFechaDia();
-        Object[] elementos = listaItinerarios.toArray();
-        DefaultListModel<String> modelLista = new DefaultListModel<>();
+        if (itinerarioSeleccionado == null || fechaSeleccionada == null || horaSeleccionada == null
+                || textoQueja.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!validarFormatoCorreo(correo)) {
+            JOptionPane.showMessageDialog(this, "El correo electrónico no tiene un formato válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!validarFormatoTelefono(telefono)) {
+            JOptionPane.showMessageDialog(this, "El número de teléfono no tiene un formato válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Guardar la queja en el sistema y mostrar mensaje de éxito
+            guardarQueja(itinerarioSeleccionado, fechaSeleccionada, horaSeleccionada, nombreGuia, textoQueja, correo, telefono);
+            JOptionPane.showMessageDialog(this, "La queja ha sido enviada a la administración del zoológico.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-        // Paso 5: Agregar elementos al modelo de lista
-        for (Date itinerario : listaItinerarios) {
-            modelLista.addElement(itinerario.toString());
+            // Limpiar los campos del formulario
+            limpiarCampos();
         }
-
-        // Paso 6: Asignar el modelo de lista a la JList
-        lista2.setModel(modelLista);
-    }//GEN-LAST:event_MostrarListaFechaDia
-
-    private void lista3ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lista3ValueChanged
         
-    }//GEN-LAST:event_lista3ValueChanged
+    }//GEN-LAST:event_jButtonEnviarActionPerformed
 
-    private void MostrarListaHoras(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_MostrarListaHoras
-        FachadaNegocio fachada = new FachadaNegocio();
+    private boolean validarFormatoCorreo(String correo) {
+        // Validar el formato del correo electrónico
+        // Implementa tu lógica de validación aquí
+        return true;
+    }
 
-        List<Date> listaItinerarios = fachada.llenarListaItinerarioHora();
-        Object[] elementos = listaItinerarios.toArray();
-        DefaultListModel<String> modelLista = new DefaultListModel<>();
+    private boolean validarFormatoTelefono(String telefono) {
+        // Validar el formato del número de teléfono
+        // Implementa tu lógica de validación aquí
+        return true;
+    }
 
-        // Paso 5: Agregar elementos al modelo de lista
-        for (Date itinerario : listaItinerarios) {
-            modelLista.addElement(itinerario.getHours()+":"+itinerario.getMinutes()+" hrs");
-        }
+    private void guardarQueja(String itinerario, String fecha, String hora, String guia, String queja, String correo, String telefono) {
+        // Guardar la queja en el sistema
+        // Implementa tu lógica de guardar quejas aquí
+    }
 
-        // Paso 6: Asignar el modelo de lista a la JList
-        lista3.setModel(modelLista);
-    }//GEN-LAST:event_MostrarListaHoras
-
+    private void limpiarCampos() {
+        // Limpiar los campos del formulario
+        jListItinerarios.clearSelection();
+        jListFechas.clearSelection();
+        jListHoras.clearSelection();
+        jTextFieldNombreGuia.setText("");
+        jTextAreaQueja.setText("");
+        jTextFieldCorreo.setText("");
+        jTextFieldTelefono.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -209,12 +309,25 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonEnviar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jListFechas;
+    private javax.swing.JList<String> jListHoras;
+    private javax.swing.JList<String> jListItinerarios;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<String> lista;
-    private javax.swing.JList<String> lista2;
-    private javax.swing.JList<String> lista3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextAreaQueja;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldNombreGuia;
+    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }
