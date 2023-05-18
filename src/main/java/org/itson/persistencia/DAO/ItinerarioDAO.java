@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.bson.Document;
+import org.itson.dominio.Especie;
 import org.itson.dominio.Guia;
 import org.itson.dominio.Itinerario;
 import org.itson.dominio.Zona;
@@ -59,9 +60,12 @@ public class ItinerarioDAO implements IitinerarioDAO {
         // Obtener el timestamp en milisegundos
         long timestamp = fechaHoraItinerario.getTimeInMillis();
         documentoItinerario.append("fechaHoraItinerario", new Date(timestamp));
+        documentoItinerario.append("zonas", itinerario.getZonas());
+        documentoItinerario.append("guias", itinerario.getGuias());
         collection.insertOne(documentoItinerario);
         return itinerario;
     }
+
     /**
      * Método que elimina un objeto de tipo Itinerario
      *
@@ -98,13 +102,37 @@ public class ItinerarioDAO implements IitinerarioDAO {
                 itinerario.setLongitud(documento.getDouble("longitud").floatValue());
                 itinerario.setMaxNumVisitantes(documento.getInteger("maxNumVisitantes"));
                 itinerario.setFechaHoraItinerario(documento.getDate("fechaHoraItinerario"));
-                itinerario.setZonas(documento.getList("zonas", Zona.class));
-                itinerario.setGuias(documento.getList("guias", Guia.class));
+
+                List<Document> zonasDoc = (List<Document>) documento.get("zonas");
+                List<Zona> zonas = new ArrayList<>();
+                for (Document DocumentoZona : zonasDoc) {
+                 
+                    Zona zona = new Zona();
+                    zona.setNombre(DocumentoZona.getString("nombre"));
+                    zona.setExtension(DocumentoZona.getDouble("extension").floatValue());
+                    zonas.add(zona);
+                }
+                itinerario.setZonas(zonas);
+
+                List<Document> guiasDoc = (List<Document>) documento.get("guias");
+                List<Guia> guias = new ArrayList<>();
+                for (Document DocumentoGuia : guiasDoc) {
+                    
+                    Guia guia = new Guia();
+                    guia.setNombre(documento.getString("nombre"));
+                    guia.setDireccion(documento.getList("direccion", String.class));
+                    guia.setTelefono(documento.getInteger("telefono"));
+                    guia.setFechaIngreso(documento.getDate("fechaIngreso"));
+                    //faltan las listas
+                    guias.add(guia);
+                }
+                itinerario.setGuias(guias);
                 itinerarios.add(itinerario);
             }
         }
         return itinerarios;
     }
+
     /**
      * Método que consulta todos los itinerarios creados el último mesa
      * @return Una lista con los itinerarios

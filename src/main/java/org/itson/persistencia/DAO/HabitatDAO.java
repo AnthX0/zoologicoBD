@@ -98,7 +98,20 @@ public class HabitatDAO implements IHabitatsDAO {
                 habitat.setNombre(documento.getString("nombre"));
                 habitat.setClima(documento.getString("clima"));
                 habitat.setTipoVegetacion(documento.getString("tipoVegetacion"));
-                habitat.setContinentes(documento.getList("continentes", Continente.class));
+                
+                List<Object> continentesObject = documento.getList("continentes", Object.class);
+                List<Continente> continentes = new ArrayList<>();
+                for (Object continenteObject : continentesObject) {
+                    if (continenteObject instanceof Document) {
+                        Document continenteDoc = (Document) continenteObject;
+                        Continente continente = new Continente();
+                        continente.setDescripcion(continenteDoc.getString("descripcion"));
+                        continente.setNombre(continenteDoc.getString("nombre"));
+                        continentes.add(continente);
+                    }
+                }
+                habitat.setContinentes(continentes);
+
                 habitats.add(habitat);
             }
         }
