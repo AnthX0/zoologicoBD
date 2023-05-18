@@ -8,7 +8,9 @@ import org.itson.dominio.Continente;
 import org.itson.dominio.Habitat;
 import org.itson.dominio.Itinerario;
 import org.itson.dominio.Zona;
+import org.itson.persistencia.DAO.GuiasDAO;
 import org.itson.persistencia.DAO.ItinerarioDAO;
+import org.itson.persistencia.DAO.ZonaDAO;
 
 /**
  * @author Victor, Henry, Hermann y Adán
@@ -20,6 +22,7 @@ public class FachadaNegocio {
     HabitatNegocio habNeg = new HabitatNegocio();
     QuejaNegocio quejaNeg = new QuejaNegocio();
     EspecieNegocio espNeg = new EspecieNegocio();
+    
 
     // MÉTODOS
     public void recuperarZonasYGuias() {
@@ -33,9 +36,11 @@ public class FachadaNegocio {
     }
     
     public void buscarItinerarioExistente(String nombre){
+        
     }
     
     public void mostrarItinerarioExistente(){
+        
     }
 
     public List<String> llenarListaNombreItinerarios() {
