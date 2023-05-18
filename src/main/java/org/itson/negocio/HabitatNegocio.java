@@ -18,30 +18,30 @@ import org.itson.persistencia.DAO.HabitatDAO;
 public class HabitatNegocio {
 
     // MÉTODOS
-    public Habitat verificarExistencia(Habitat habitat) {
+    public boolean verificarExistencia(Habitat habitat) {
         HabitatDAO habitatdao = new HabitatDAO();
         List<Habitat> habitats = habitatdao.consultarHabitats();
         for (Habitat h : habitats) {
             if (h.getNombre().equals(habitat.getNombre())
                     && h.getClima().equals(habitat.getClima())
-                    && h.getTipoVegetacion().equals(habitat.getTipoVegetacion())
-                    && h.getContinentes().equals(habitat.getContinentes())) {
+                    && h.getTipoVegetacion().equals(habitat.getTipoVegetacion())) {
                 JOptionPane.showMessageDialog(null, "Habitat existente", "Error", JOptionPane.ERROR_MESSAGE);
-                return h;
+                return false;
             }
         }
-        return habitat;
+        return true;
     }
 
-    public void verificarNombreHabitat(String nombre) {
+    public boolean verificarNombreHabitat(String nombre) {
         HabitatDAO habitatdao = new HabitatDAO();
         List<Habitat> habitats = habitatdao.consultarHabitats();
         for (Habitat habitat : habitats) {
             if (habitat.getNombre().equals(nombre)) {
                 JOptionPane.showMessageDialog(null, "Nombre existente", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                return false;
             }
         }
+        return true;
     }
 
     public void verificarTipoHabitat(String tipo) {

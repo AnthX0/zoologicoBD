@@ -101,6 +101,12 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldNombreGuia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreGuiaActionPerformed(evt);
+            }
+        });
+
         jTextAreaQueja.setColumns(20);
         jTextAreaQueja.setRows(5);
         jScrollPane4.setViewportView(jTextAreaQueja);
@@ -242,6 +248,10 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButtonEnviarActionPerformed
+
+    private void jTextFieldNombreGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreGuiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreGuiaActionPerformed
 
     private boolean validarFormatoCorreo(String correo) {
         // Validar el formato del correo electrónico

@@ -11,6 +11,8 @@ import org.itson.dominio.Zona;
 import org.itson.persistencia.DAO.GuiasDAO;
 import org.itson.persistencia.DAO.ItinerarioDAO;
 import org.itson.persistencia.DAO.ZonaDAO;
+import org.itson.persistencia.FachadaPersistencia;
+import org.itson.presentacion.RegistrarHabitatForm;
 
 /**
  * @author Victor, Henry, Hermann y Adán
@@ -40,7 +42,7 @@ public class FachadaNegocio {
     }
     
     public void mostrarItinerarioExistente(){
-        
+                
     }
 
     public List<String> llenarListaNombreItinerarios() {
@@ -108,13 +110,27 @@ public class FachadaNegocio {
     
     // HABITAT
     /**
-     * Método que valida los datos de un habitat
-     * DATOS DE PRUEBA: CAMBIAR POR DATOS DE HABITAT FORM
+     * Método que valida los datos de un habitat DATOS DE PRUEBA: CAMBIAR POR
+     * DATOS DE HABITAT FORM
      */
-    public void validacionDatosHabitat(){
-        habNeg.verificarExistencia(new Habitat());
-        habNeg.verificarNombreHabitat("");
-        habNeg.verificarTipoHabitat("");
-        habNeg.verificarContinente(new Continente());
+    public void validacionDatosHabitat(String nombre, String clima, String tipo) {
+        boolean opcion = habNeg.verificarExistencia(new Habitat(nombre, clima, tipo));
+        if (opcion == true) {
+            FachadaPersistencia fachadap = new FachadaPersistencia();
+            
+            fachadap.guardarHabitat(new Habitat(nombre, clima, tipo));
+        }
+
+    }
+
+    public boolean validarNombreHabitat(String nombre) {
+        if (habNeg.verificarNombreHabitat(nombre) == true) {
+            return false;
+        }
+        return true;
+    }
+
+    public void agregarHabitat(Habitat habitat) {
+       
     }
 }
