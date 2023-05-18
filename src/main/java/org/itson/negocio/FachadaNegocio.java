@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.itson.dominio.Continente;
 import org.itson.dominio.Habitat;
+import javax.swing.JOptionPane;
 import org.itson.dominio.Itinerario;
 import org.itson.dominio.Zona;
 import org.itson.persistencia.DAO.ItinerarioDAO;
@@ -27,12 +28,6 @@ public class FachadaNegocio {
         itiNeg.recuperarZonas();
     }
     
-    public void mostrarPantallaItinerario(){
-    }
-    
-    public void buscarItinerarioExistente(String nombre){
-    }
-    
     public void mostrarItinerarioExistente(){
     }
     
@@ -45,6 +40,9 @@ public class FachadaNegocio {
         ItinerarioDAO itinerariodao = new ItinerarioDAO();
         List<Itinerario> lista = itinerariodao.consultarItinerarios();
         List<String> listanombres = new ArrayList<>();
+        if (lista == null || lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error al recuperar los itinerarios", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         for (int i = 0; i < lista.size(); i++) {
             listanombres.add(lista.get(i).getNombre());
         }
@@ -55,20 +53,23 @@ public class FachadaNegocio {
         ItinerarioDAO itinerariodao = new ItinerarioDAO();
         List<Itinerario> lista = itinerariodao.consultarItinerarios();
         List<Date> listafechadia = new ArrayList<>();
+        if (lista == null || lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error al recuperar los itinerarios", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         for (int i = 0; i < lista.size(); i++) {
             listafechadia.add(lista.get(i).getFechaHoraItinerario());
         }
         return listafechadia;
     }
-     
-    public List<String> llenarListaItinerarioHora() {
+
+    public List<Date> llenarListaItinerarioHora() {
         ItinerarioDAO itinerariodao = new ItinerarioDAO();
         List<Itinerario> lista = itinerariodao.consultarItinerarios();
-        List<String> listanombres = new ArrayList<>();
+        List<Date> listafechadia = new ArrayList<>();
         for (int i = 0; i < lista.size(); i++) {
-            listanombres.add(lista.get(i).getNombre());
+            listafechadia.add(lista.get(i).getFechaHoraItinerario());
         }
-        return listanombres;
+        return listafechadia;
     }
     /**
      * Método que valida los datos de un itinerario
@@ -84,6 +85,10 @@ public class FachadaNegocio {
     }
     
     // QUEJA
+    /**
+     * Método que valida los datos de una queja
+     * DATOS DE PRUEBA: CAMBIAR POR DATOS DE HABITAT FORM
+     */
     public void validacionQueja() {
         quejaNeg.verificarNombreQueja("");
         quejaNeg.verificarCorreoQueja("");

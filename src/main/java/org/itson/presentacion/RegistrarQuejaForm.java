@@ -158,7 +158,7 @@ public class RegistrarQuejaForm extends javax.swing.JFrame {
     private void MostrarListaHoras(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_MostrarListaHoras
         FachadaNegocio fachada = new FachadaNegocio();
 
-        List<Date> listaItinerarios = fachada.llenarListaItinerarioFechaDia();
+        List<Date> listaItinerarios = fachada.llenarListaItinerarioHora();
         Object[] elementos = listaItinerarios.toArray();
         DefaultListModel<String> modelLista = new DefaultListModel<>();
 
