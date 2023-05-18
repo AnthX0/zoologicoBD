@@ -26,13 +26,6 @@ public interface IQuejaDAO {
      */
     public Queja eliminar(Queja queja);
     /**
-     * Método que guarda la queja creada, utilizando el correo y teléfono
-     * @param queja Queja a guardar
-     * @param correoElectronico Correo electrónico de la persona
-     * @param telefono Teléfono de la persona
-     */
-    public void guardarQueja(String queja, String correoElectronico, String telefono);
-    /**
      * Método que crea una lista con todos los objetos Queja existentes
      * @return Una lista de objetos Queja
      */

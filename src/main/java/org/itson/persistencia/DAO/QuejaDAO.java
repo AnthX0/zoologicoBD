@@ -70,24 +70,6 @@ public class QuejaDAO implements IQuejaDAO {
         return queja;
     }
     /**
-     * Método que guarda la queja creada, utilizando el correo y teléfono
-     * @param queja Queja a guardar
-     * @param correoElectronico Correo electrónico de la persona
-     * @param telefono Teléfono de la persona
-     */
-    @Override
-    public void guardarQueja(String queja, String correoElectronico, String telefono) {
-        // Obtener la colección donde se guardarán las quejas
-        MongoCollection<Document> collection = baseDatos.getCollection("queja");
-        // Crear un nuevo documento con los datos de la queja
-        Document quejaDocument = new Document();
-        quejaDocument.append("queja", queja)
-                .append("correoElectronico", correoElectronico)
-                .append("telefono", telefono);
-        // Insertar el documento en la colección
-        collection.insertOne(quejaDocument);
-    }
-    /**
      * Método que crea una lista con todos los objetos Queja existentes
      * @return Una lista de objetos Queja
      */
