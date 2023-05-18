@@ -22,6 +22,7 @@ import org.itson.persistencia.DAO.ItinerarioDAO;
 import org.itson.persistencia.DAO.PersonasDAO;
 import org.itson.persistencia.DAO.ZonaDAO;
 import org.itson.persistencia.DAO.QuejaDAO;
+import org.itson.presentacion.pantallaPrincipal;
 
 /**
  * @author Victor, Henry, Hermann y Adán
@@ -29,18 +30,8 @@ import org.itson.persistencia.DAO.QuejaDAO;
  */
 public class ZoologicoBD {
     public static void main(String[] args) {
-          ItinerarioDAO idao = new ItinerarioDAO();
-          Itinerario itinerario = new Itinerario("itinerario", 22, 3f, 24, new Date(2023, 4, 1, 3, 00));
-          Itinerario itinerario2 = new Itinerario("itinerario", 22, 3f, 24, new Date(2022, 4, 2,3, 00));
-          Itinerario itinerario3 = new Itinerario("itinerario", 22, 3f, 24, new Date(2024, 4, 4, 3, 00));
-          System.out.println(itinerario.getFechaHoraItinerario());
-          idao.agregar(itinerario);
-          idao.agregar(itinerario2);
-          idao.agregar(itinerario3);
-          System.out.println(idao.consultarItinerariosUltimoMes());
-          
-        
-          FachadaNegocio fn = new FachadaNegocio();
+          pantallaPrincipal ventana = new pantallaPrincipal();
+          ventana.setVisible(true);
 
     }
 }
